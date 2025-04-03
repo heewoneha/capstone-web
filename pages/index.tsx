@@ -1,15 +1,18 @@
 import React from "react";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-[#fdf7fd] text-gray-800 p-6">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-semibold mb-6">🎨 Motion Canvas</h1>
 
         <button
+          onClick={() => router.push('/select_background')}
           className="bg-[#AA43DE] text-white px-6 py-2 rounded-full font-medium hover:bg-[#9329c5] transition mb-6"
         >
-          Let’s Get Started!
+          Let's Get Started!
         </button>
 
         <section className="bg-white rounded-2xl shadow p-6 mb-8">
