@@ -6,6 +6,12 @@ export default function Home() {
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-semibold mb-6">🎨 Motion Canvas</h1>
 
+        <button
+          className="bg-[#AA43DE] text-white px-6 py-2 rounded-full font-medium hover:bg-[#9329c5] transition mb-6"
+        >
+          Let’s Get Started!
+        </button>
+
         <section className="bg-white rounded-2xl shadow p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">📋 How to use?</h2>
 
