@@ -16,7 +16,7 @@ export default function SelectBackground() {
 
         {/* IMAGE + TEXT to STYLIZED IMAGE */}
         <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
-          <p className="font-bold text-lg mb-4">IMAGE + TEXT to STYLIZED IMAGE</p>
+          <p className="font-bold text-lg mb-4">IMAGE + TEXT to <br /> STYLIZED IMAGE</p>
           <div className="text-5xl mb-4">🖼️💬</div>
         </div>
 

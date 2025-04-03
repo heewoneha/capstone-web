@@ -6,18 +6,9 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-[#fdf7fd] text-gray-800 p-6">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-semibold mb-6 text-center">
+        <h1 className="text-3xl font-semibold mb-6">
           🎨 Motion Canvas
         </h1>
-
-        <div className="flex justify-center mb-6">
-          <button
-            onClick={() => router.push('/select_background')}
-            className="bg-[#AA43DE] text-white text-lg px-8 py-3 rounded-full font-semibold hover:bg-[#9329c5] transition-all shadow-md"
-          >
-            Let's Get Started!
-          </button>
-        </div>
 
         <section className="bg-white rounded-2xl shadow p-6 mb-8">
           <h2 className="text-xl font-bold mb-4">📋 How to use?</h2>
@@ -63,6 +54,16 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <div className="flex justify-center mt-12">
+          <button
+            onClick={() => router.push('/select_background')}
+            className="bg-[#AA43DE] text-white text-xl px-8 py-4 rounded-full font-semibold hover:bg-[#9329c5] transition-all shadow-md w-full max-w-md"
+          >
+            Let's Get Started!
+          </button>
+        </div>
+
       </div>
     </div>
   );
