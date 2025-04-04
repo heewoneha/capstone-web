@@ -15,7 +15,7 @@ export default function Home() {
 
           {/* Step 1 */}
           <div className="bg-gray-100 rounded-xl p-4 mb-4 flex items-start gap-4">
-            <div className="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold">
+            <div className="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold flex-none shrink-0 leading-none">
               1
             </div>
             <div>
@@ -30,7 +30,7 @@ export default function Home() {
 
           {/* Step 2 */}
           <div className="bg-gray-100 rounded-xl p-4 mb-4 flex items-start gap-4">
-            <div className="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold">
+            <div className="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold flex-none shrink-0 leading-none">
               2
             </div>
             <div>
@@ -45,7 +45,7 @@ export default function Home() {
 
           {/* Step 3 */}
           <div className="bg-gray-100 rounded-xl p-4 flex items-start gap-4">
-            <div className="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold">
+            <div className="bg-gray-300 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold flex-none shrink-0 leading-none">
               3
             </div>
             <div>
