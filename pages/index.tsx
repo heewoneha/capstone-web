@@ -57,7 +57,7 @@ export default function Home() {
 
         <div className="flex justify-center mt-12">
           <button
-            onClick={() => router.push('/select_background')}
+            onClick={() => router.push('/background/index.tsx')}
             className="bg-[#AA43DE] text-white text-xl px-8 py-4 rounded-full font-semibold hover:bg-[#9329c5] transition-all shadow-md w-full max-w-md"
           >
             Let's Get Started!

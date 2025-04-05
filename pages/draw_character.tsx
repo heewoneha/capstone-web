@@ -28,7 +28,7 @@ export default function DrawPage() {
         🖌️ Draw your character!
       </h1>
 
-      {/* 도구 선택 */}
+      {/* Select tool */}
       <div className="flex gap-4 mb-4 flex-wrap justify-center">
         <button
           className={`px-4 py-2 rounded ${
