@@ -40,7 +40,10 @@ export default function SelectBackground() {
         </div>
 
         {/* EMPTY BACKGROUND */}
-        <div className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer">
+        <div
+          className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer"
+          onClick={() => router.push('/draw_character')}
+        >
           <p className="font-bold text-lg mb-4">EMPTY BACKGROUND</p>
           <div className="text-6xl mb-4">⬜️</div>
         </div>
