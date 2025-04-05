@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 export default function BackgroundTextPage() {
   const [text, setText] = useState("");
-  const maxLength = 500;
+  const maxLength = 200;
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -16,7 +16,7 @@ export default function BackgroundTextPage() {
           maxLength={maxLength}
           value={text}
           onChange={handleInput}
-          placeholder="Imagine your background and describe it in writing. (Max 500 characters)"
+          placeholder="Imagine your background and describe it in writing. (Max 200 characters)"
           className="w-full h-40 p-4 text-gray-700 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
         ></textarea>
         <div className="text-right text-sm text-gray-500 mt-1">
