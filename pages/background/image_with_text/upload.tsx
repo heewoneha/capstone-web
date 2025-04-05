@@ -18,13 +18,20 @@ export default function ImageWithTextUpload() {
     }
   };
 
+  const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setText(e.target.value);
+    setError("");
+  };
+
   const handleSubmit = () => {
     if (!file || !text.trim()) {
       setError("Please upload an image and enter a description.");
       return;
     }
+
+    setError("");
     // for later, api process here
-    router.push('/draw_character');
+    router.push("/draw_character");
   };
 
   return (
@@ -43,11 +50,10 @@ export default function ImageWithTextUpload() {
               <span>{file.name}</span>
             </div>
           )}
-          <label
-            className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md cursor-pointer transition"
-          >
+          <label className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md cursor-pointer transition">
             Select a file
             <input
+              key={file ? file.name : "initial"}
               type="file"
               accept=".png,.jpg,.jpeg"
               onChange={handleFileChange}
@@ -60,15 +66,13 @@ export default function ImageWithTextUpload() {
         <textarea
           maxLength={50}
           value={text}
-          onChange={(e) => setText(e.target.value)}
+          onChange={handleTextChange}
           placeholder="Based on the image, imagine the background and describe it in words."
           className="w-full h-28 p-4 text-gray-700 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
         />
 
         {/* Error message */}
-        {error && (
-          <div className="text-red-500 text-sm mt-2">{error}</div>
-        )}
+        {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
 
         {/* Submit button */}
         <button
