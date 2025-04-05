@@ -25,16 +25,20 @@ export default function BackgroundTextPage() {
   return (
     <div className="bg-purple-50 flex flex-col items-center justify-center min-h-screen px-4">
       <div className="w-full max-w-md p-6 bg-white rounded-xl shadow-md">
-        <textarea
-          id="backgroundText"
-          maxLength={maxLength}
-          value={text}
-          onChange={handleInput}
-          placeholder="Imagine your background and describe it in writing. (Max 120 characters)"
-          className="w-full h-40 p-4 text-gray-700 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
-        ></textarea>
-        <div className="text-right text-sm text-gray-500 mt-1">
-          {text.length}/{maxLength}
+        
+        {/* Textarea + counter */}
+        <div className="relative w-full">
+          <textarea
+            id="backgroundText"
+            maxLength={maxLength}
+            value={text}
+            onChange={handleInput}
+            placeholder="Imagine your background and describe it in writing. (Max 120 characters)"
+            className="w-full h-40 p-4 pr-16 text-gray-700 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <div className="absolute bottom-2 right-3 text-xs text-gray-500">
+            {text.length}/{maxLength}
+          </div>
         </div>
 
         {error && (

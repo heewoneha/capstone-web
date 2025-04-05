@@ -7,6 +7,8 @@ export default function ImageWithTextUpload() {
   const [text, setText] = useState("");
   const [error, setError] = useState("");
 
+  const maxLength = 50;
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
     if (selectedFile && /\.(png|jpe?g)$/i.test(selectedFile.name)) {
@@ -37,6 +39,7 @@ export default function ImageWithTextUpload() {
   return (
     <div className="min-h-screen bg-purple-50 flex flex-col items-center justify-center px-4 py-12">
       <div className="w-full max-w-xl p-6 bg-white rounded-xl shadow-md flex flex-col items-center">
+        
         {/* Upload file */}
         <div className="flex items-center gap-3 w-full mb-4">
           {file && (
@@ -62,14 +65,19 @@ export default function ImageWithTextUpload() {
           </label>
         </div>
 
-        {/* Input text */}
-        <textarea
-          maxLength={50}
-          value={text}
-          onChange={handleTextChange}
-          placeholder="Based on the image, imagine the background and describe it in words."
-          className="w-full h-28 p-4 text-gray-700 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
-        />
+        {/* Input text with counter */}
+        <div className="relative w-full">
+          <textarea
+            maxLength={maxLength}
+            value={text}
+            onChange={handleTextChange}
+            placeholder="Based on the image, imagine the background and describe it in words."
+            className="w-full h-28 p-4 pr-16 text-gray-700 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-purple-400"
+          />
+          <div className="absolute bottom-2 right-3 text-xs text-gray-500">
+            {text.length}/{maxLength}
+          </div>
+        </div>
 
         {/* Error message */}
         {error && <div className="text-red-500 text-sm mt-2">{error}</div>}
