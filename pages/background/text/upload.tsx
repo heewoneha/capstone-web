@@ -1,13 +1,25 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/router";
 
 export default function BackgroundTextPage() {
   const router = useRouter();
   const [text, setText] = useState("");
+  const [error, setError] = useState("");
   const maxLength = 120;
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
+    setError("");
+  };
+
+  const handleSubmit = () => {
+    if (!text.trim()) {
+      setError("Please enter a description before proceeding.");
+      return;
+    }
+
+    setError("");
+    router.push("/draw_character");
   };
 
   return (
@@ -24,8 +36,13 @@ export default function BackgroundTextPage() {
         <div className="text-right text-sm text-gray-500 mt-1">
           {text.length}/{maxLength}
         </div>
+
+        {error && (
+          <p className="text-red-500 text-sm mt-2">{error}</p>
+        )}
+
         <button
-          onClick={() => router.push('/draw_character')}
+          onClick={handleSubmit}
           className="w-full mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
         >
           Next
