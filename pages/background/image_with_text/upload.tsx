@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 export default function ImageWithTextUpload() {
+  const router = useRouter();
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
@@ -22,7 +24,7 @@ export default function ImageWithTextUpload() {
       return;
     }
     // for later, api process here
-    alert("Upload success!");
+    router.push('/draw_character');
   };
 
   return (

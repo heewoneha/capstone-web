@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function BackgroundTextPage() {
+  const router = useRouter();
   const [text, setText] = useState("");
   const maxLength = 120;
 
@@ -23,6 +25,7 @@ export default function BackgroundTextPage() {
           {text.length}/{maxLength}
         </div>
         <button
+          onClick={() => router.push('/draw_character')}
           className="w-full mt-4 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
         >
           Next
