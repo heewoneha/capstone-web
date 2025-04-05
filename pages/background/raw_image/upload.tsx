@@ -22,7 +22,8 @@ export default function ImageOnlyUpload() {
       setError("Please upload an image before proceeding.");
       return;
     }
-    
+
+    setError("");
     // for later, api process here
     router.push("/draw_character");
   };
@@ -43,11 +44,13 @@ export default function ImageOnlyUpload() {
               <span>{file.name}</span>
             </div>
           )}
+
           <label
             className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md cursor-pointer transition"
           >
             Select a file
             <input
+              key={file ? file.name : "initial"}
               type="file"
               accept=".png,.jpg,.jpeg"
               onChange={handleFileChange}
