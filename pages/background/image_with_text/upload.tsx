@@ -31,9 +31,15 @@ export default function ImageWithTextUpload() {
         {/* Upload file */}
         <div className="flex items-center gap-3 w-full mb-4">
           {file && (
-            <span className="bg-purple-100 text-gray-700 px-4 py-2 rounded-full text-sm">
-              ✕ {file.name}
-            </span>
+            <div className="flex items-center gap-2 bg-purple-100 text-gray-700 px-4 py-2 rounded-full text-sm">
+              <button
+                className="text-xl font-bold text-gray-500 hover:text-gray-700"
+                onClick={() => setFile(null)}
+              >
+                ✕
+              </button>
+              <span>{file.name}</span>
+            </div>
           )}
           <label
             className="bg-purple-500 hover:bg-purple-600 text-white px-4 py-2 rounded-md cursor-pointer transition"
