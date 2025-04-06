@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { SketchPicker } from 'react-color';
+import { useRouter } from "next/router";
 
 export default function DrawPage() {
   const [brushColor, setBrushColor] = useState('#000000');
@@ -9,6 +10,7 @@ export default function DrawPage() {
   const [showPicker, setShowPicker] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState(300);
+  const router = useRouter();
 
   useEffect(() => {
     const resize = () => {
@@ -96,6 +98,25 @@ export default function DrawPage() {
           canvasBackgroundColor="#ffffff"
           className="w-full h-full rounded"
         />
+      </div>
+
+      <div className="bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 p-4 rounded-md shadow-sm max-w-md mt-8">
+        <div className="flex items-start gap-2">
+          <span className="text-xl">💡</span>
+          <p className="text-sm leading-relaxed">
+            Please draw a character with a human-like shape — two arms and two legs.
+          </p>
+        </div>
+      </div>
+
+
+      <div className="mt-8">
+        <button
+          onClick={() => router.push('/result')}
+          className="bg-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow hover:bg-purple-600 transition"
+        >
+          Next
+        </button>
       </div>
     </div>
   );
