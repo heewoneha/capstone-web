@@ -15,6 +15,7 @@ export default function BackgroundTextPage() {
       console.log("UUID loaded from session:", storedUuid);
     } else {
       console.warn("No UUID found in sessionStorage.");
+      router.push("/");
     }
   }, []);
 

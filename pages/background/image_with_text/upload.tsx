@@ -17,6 +17,7 @@ export default function ImageWithTextUpload() {
       console.log("UUID loaded from session:", storedUuid);
     } else {
       console.warn("No UUID found in sessionStorage.");
+      router.push("/");
     }
   }, []);
 

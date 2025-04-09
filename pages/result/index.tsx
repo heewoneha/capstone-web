@@ -18,6 +18,7 @@ export default function GalleryPage() {
       console.log("UUID in gallery:", storedUuid);
     } else {
       console.warn("No UUID found in sessionStorage");
+      router.push("/");
     }
   }, []);
 

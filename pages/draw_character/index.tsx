@@ -32,6 +32,7 @@ export default function DrawPage() {
       console.log("UUID loaded from session:", storedUuid);
     } else {
       console.warn("No UUID found in sessionStorage");
+      router.push("/");
     }
   }, []);
 
