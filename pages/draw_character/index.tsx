@@ -10,6 +10,7 @@ export default function DrawPage() {
   const [showPicker, setShowPicker] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState(300);
+  const [uuid, setUuid] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -22,6 +23,16 @@ export default function DrawPage() {
     resize();
     window.addEventListener('resize', resize);
     return () => window.removeEventListener('resize', resize);
+  }, []);
+
+  useEffect(() => {
+    const storedUuid = sessionStorage.getItem("uuid");
+    if (storedUuid) {
+      setUuid(storedUuid);
+      console.log("UUID loaded from session:", storedUuid);
+    } else {
+      console.warn("No UUID found in sessionStorage");
+    }
   }, []);
 
   return (
@@ -109,6 +120,12 @@ export default function DrawPage() {
         </div>
       </div>
 
+      {/* Test */}
+      {uuid && (
+        <div className="text-sm text-gray-500 mt-2">
+          UUID: {uuid}
+        </div>
+      )}
 
       <div className="mt-8">
         <button

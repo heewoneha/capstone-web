@@ -1,13 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 export default function ImageWithTextUpload() {
   const router = useRouter();
+  const [uuid, setUuid] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
 
   const maxLength = 50;
+
+  useEffect(() => {
+    const storedUuid = sessionStorage.getItem("uuid");
+    if (storedUuid) {
+      setUuid(storedUuid);
+      console.log("UUID loaded from session:", storedUuid);
+    } else {
+      console.warn("No UUID found in sessionStorage.");
+    }
+  }, []);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -33,6 +44,7 @@ export default function ImageWithTextUpload() {
 
     setError("");
     // for later, api process here
+    console.log("Submitting with uuid:", uuid); // test
     router.push("/draw_character");
   };
 

@@ -1,11 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 export default function BackgroundTextPage() {
   const router = useRouter();
+  const [uuid, setUuid] = useState<string | null>(null);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
   const maxLength = 120;
+
+  useEffect(() => {
+    const storedUuid = sessionStorage.getItem("uuid");
+    if (storedUuid) {
+      setUuid(storedUuid);
+      console.log("UUID loaded from session:", storedUuid);
+    } else {
+      console.warn("No UUID found in sessionStorage.");
+    }
+  }, []);
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
@@ -19,6 +30,7 @@ export default function BackgroundTextPage() {
     }
 
     setError("");
+    console.log("Submitting with uuid:", uuid); // test
     router.push("/draw_character");
   };
 
