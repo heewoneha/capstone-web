@@ -8,9 +8,9 @@ interface StartEndButtonProps {
 }
 
 export default function StartEndButton({ onClick, isStart = true, className = "", children }: StartEndButtonProps) {
-  const baseStyles = "text-white text-xl px-8 py-4 rounded-full font-semibold transition-all shadow-md w-full max-w-md";
-  const startStyles = "bg-[#AA43DE] hover:bg-[#9329c5]";
-  const endStyles = "bg-white text-gray-700 border border-gray-300 hover:bg-gray-100";
+  const baseStyles = "text-xl px-8 py-4 rounded-full font-semibold transition-all shadow-md w-full max-w-md";
+  const startStyles = "bg-[#AA43DE] text-white hover:bg-[#9329c5]";
+  const endStyles = "bg-white text-black border border-gray-300 hover:bg-gray-100";
 
   return (
     <button
