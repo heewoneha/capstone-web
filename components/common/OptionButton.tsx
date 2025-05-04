@@ -22,4 +22,4 @@ export default function OptionButton({
       <div className="text-6xl mb-4">{icon}</div>
     </div>
   );
-} 
+}

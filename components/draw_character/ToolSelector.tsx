@@ -26,4 +26,4 @@ export default function ToolSelector({ tool, onToolChange }: ToolSelectorProps) 
       </button>
     </div>
   );
-} 
+}

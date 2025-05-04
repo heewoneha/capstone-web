@@ -11,4 +11,4 @@ export default function DrawingTip() {
       </div>
     </div>
   );
-} 
+}

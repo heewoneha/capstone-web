@@ -40,4 +40,4 @@ export default function DrawingCanvas({ brushColor, brushRadius, tool }: Drawing
       />
     </div>
   );
-} 
+}
