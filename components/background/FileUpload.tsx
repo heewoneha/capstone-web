@@ -43,4 +43,4 @@ export default function FileUpload({ file, onFileChange, accept = ".png", error 
       {error && <div className="text-red-500 text-sm">{error}</div>}
     </div>
   );
-} 
+}

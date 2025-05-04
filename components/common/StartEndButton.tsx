@@ -20,4 +20,4 @@ export default function StartEndButton({ onClick, isStart = true, className = ""
       {children}
     </button>
   );
-} 
+}
