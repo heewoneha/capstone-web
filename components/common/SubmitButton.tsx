@@ -9,7 +9,7 @@ export default function SubmitButton({ onClick, disabled = false, children = "Ne
     <button
       onClick={onClick}
       disabled={disabled}
-      className="w-full mt-6 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed"
+      className="mt-6 bg-purple-500 hover:bg-purple-600 text-white font-semibold py-2 px-4 rounded-md transition disabled:opacity-50 disabled:cursor-not-allowed"
     >
       {children}
     </button>
