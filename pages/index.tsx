@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
+import StartEndButton from "@/components/common/StartEndButton";
 
 export default function Home() {
   const router = useRouter();
@@ -56,12 +57,9 @@ export default function Home() {
         </section>
 
         <div className="flex justify-center mt-12">
-          <button
-            onClick={() => router.push('/background')}
-            className="bg-[#AA43DE] text-white text-xl px-8 py-4 rounded-full font-semibold hover:bg-[#9329c5] transition-all shadow-md w-full max-w-md"
-          >
+          <StartEndButton onClick={() => router.push('/background')}>
             Let's Get Started!
-          </button>
+          </StartEndButton>
         </div>
 
       </div>
