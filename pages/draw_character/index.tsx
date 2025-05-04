@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import CanvasDraw from 'react-canvas-draw';
 import { SketchPicker } from 'react-color';
 import { useRouter } from "next/router";
+import OptionButton from '@/components/common/OptionButton';
 
 export default function DrawPage() {
   const [brushColor, setBrushColor] = useState('#000000');
@@ -129,12 +130,12 @@ export default function DrawPage() {
       )}
 
       <div className="mt-8">
-        <button
+        <OptionButton
+          title="Next"
+          icon=""
           onClick={() => router.push('/result')}
           className="bg-purple-500 text-white px-6 py-3 rounded-full font-semibold shadow hover:bg-purple-600 transition"
-        >
-          Next
-        </button>
+        />
       </div>
     </div>
   );

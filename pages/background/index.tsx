@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
 import { v4 as uuidv4 } from 'uuid';
+import OptionButton from '@/components/common/OptionButton';
 
 export default function SelectBackground() {
   const router = useRouter();
@@ -24,43 +25,31 @@ export default function SelectBackground() {
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-4xl">
-        {/* TEXT TO IMAGE */}
-        <div
-          className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer"
+        <OptionButton
+          title="TEXT TO IMAGE"
+          icon="Tt"
           onClick={() => handleRoute('/background/text/upload')}
-        >
-          <p className="font-bold text-lg mb-4">TEXT TO IMAGE</p>
-          <div className="text-6xl font-extrabold mb-4">Tt</div>
-        </div>
+          className="font-extrabold"
+        />
 
-        {/* IMAGE + TEXT to STYLIZED IMAGE */}
-        <div
-          className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer"
+        <OptionButton
+          title="IMAGE + TEXT to STYLIZED IMAGE"
+          icon="🖼️💬"
           onClick={() => handleRoute('/background/image_with_text/upload')}
-        >
-          <p className="font-bold text-lg mb-4">
-            IMAGE + TEXT to <br /> STYLIZED IMAGE
-          </p>
-          <div className="text-5xl mb-4">🖼️💬</div>
-        </div>
+          className="text-5xl"
+        />
 
-        {/* RAW IMAGE */}
-        <div
-          className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer"
+        <OptionButton
+          title="RAW IMAGE"
+          icon="📷"
           onClick={() => handleRoute('/background/raw_image/upload')}
-        >
-          <p className="font-bold text-lg mb-4">RAW IMAGE</p>
-          <div className="text-6xl mb-4">📷</div>
-        </div>
+        />
 
-        {/* EMPTY BACKGROUND */}
-        <div
-          className="bg-white rounded-xl shadow hover:shadow-lg transition p-6 flex flex-col items-center text-center cursor-pointer"
+        <OptionButton
+          title="EMPTY BACKGROUND"
+          icon="⬜️"
           onClick={() => handleRoute('/draw_character')}
-        >
-          <p className="font-bold text-lg mb-4">EMPTY BACKGROUND</p>
-          <div className="text-6xl mb-4">⬜️</div>
-        </div>
+        />
       </div>
     </div>
   );
