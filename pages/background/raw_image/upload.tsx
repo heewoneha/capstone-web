@@ -33,7 +33,7 @@ export default function ImageOnlyUpload() {
   };
 
   return (
-    <div className="min-h-screen bg-purple-50 flex flex-col items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-[#fdf7fd] flex flex-col items-center justify-center px-4 py-12">
       <div className="w-full max-w-xl p-6 bg-white rounded-xl shadow-md flex flex-col items-center">
         <FileUpload
           file={file}

@@ -33,7 +33,7 @@ export default function BackgroundTextPage() {
   };
 
   return (
-    <div className="bg-purple-50 flex flex-col items-center justify-center min-h-screen px-4">
+    <div className="bg-[#fdf7fd] flex flex-col items-center justify-center min-h-screen px-4">
       <div className="w-full max-w-md p-6 bg-white rounded-xl shadow-md">
         <TextAreaWithCounter
           value={text}
