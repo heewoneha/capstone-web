@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import SubmitButton from '@/components/common/SubmitButton';
+import StartEndButton from '@/components/common/StartEndButton';
 
 const dummyGifs = Array.from({ length: 10 }, (_, i) => ({
   full: `/gifs/sample-${i + 1}.gif`,
@@ -58,28 +60,33 @@ export default function GalleryPage() {
           </div>
 
           <div className="flex gap-4 items-center">
-            <button className="bg-purple-500 text-white px-6 py-2 rounded shadow hover:bg-purple-600">
-              Download image
-            </button>
-            <button className="bg-purple-500 text-white px-6 py-2 rounded shadow hover:bg-purple-600">
-              Download video
-            </button>
-            <button
-              onClick={() => router.push('/')}
-              className="bg-white text-gray-700 border border-gray-300 px-4 py-2 rounded shadow hover:bg-gray-100"
+            <SubmitButton
+              onClick={() => {}}
+              className="bg-purple-500 text-white px-6 py-2 rounded shadow hover:bg-purple-600"
             >
-              🏠 Home
-            </button>
+              Download image
+            </SubmitButton>
+            <SubmitButton
+              onClick={() => {}}
+              className="bg-purple-500 text-white px-6 py-2 rounded shadow hover:bg-purple-600"
+            >
+              Download video
+            </SubmitButton>
           </div>
         </div>
       </div>
 
-      {/* Test */}
       {uuid && (
         <div className="text-xs text-gray-400 mt-4">
           UUID: {uuid}
         </div>
       )}
+
+      <div className="mt-6">
+        <StartEndButton onClick={() => router.push('/')} isStart={false}>
+          🏠 Go back home
+        </StartEndButton>
+      </div>
     </div>
   );
 }
