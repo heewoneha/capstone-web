@@ -1,8 +1,17 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { Method } from "axios";
 import FileUpload from "@/components/background/FileUpload";
 import TextAreaWithCounter from "@/components/background/TextAreaWithCounter";
 import SubmitButton from "@/components/common/SubmitButton";
+import { useApi } from "@/hooks/useApi";
+import { fileToBase64 } from "@/utils/file";
+
+export const METHODS = {
+  GET: 'GET' as Method,
+  POST: 'POST' as Method,
+  PUT: 'PUT' as Method,
+};
 
 export default function ImageWithTextUpload() {
   const router = useRouter();
@@ -10,8 +19,9 @@ export default function ImageWithTextUpload() {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState("");
   const [error, setError] = useState("");
+  const {request, loading} = useApi();
 
-  const maxLength = 50;
+  const maxLength = 120;
 
   useEffect(() => {
     const storedUuid = sessionStorage.getItem("uuid");
@@ -24,16 +34,43 @@ export default function ImageWithTextUpload() {
     }
   }, []);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!file || !text.trim()) {
       setError("Please upload an image and enter a description.");
       return;
     }
 
-    setError("");
-    // for later, api process here
-    console.log("Submitting with uuid:", uuid);
-    router.push("/draw_character");
+    if (!uuid) {
+      setError("UUID is missing.");
+      return;
+    }
+
+    try {
+      setError("");
+
+      const imageBase64 = await fileToBase64(file);
+
+      const payload = {
+        text: text.trim(),
+        image_base64: imageBase64,
+      };
+
+      await request(
+        METHODS.POST,
+        "/submit/background",
+        payload,
+        {
+          onSuccess: () => {
+            router.push("/draw_character");
+          },
+          onError: (err: Error) => {
+            setError("Failed to submit background: " + err.message);
+          },
+        }
+      );
+    } catch (e) {
+      setError("Unexpected error occurred.");
+    }
   };
 
   return (
