@@ -77,9 +77,11 @@ export default function BackgroundTextPage() {
           error={error}
         />
 
-        <SubmitButton onClick={handleSubmit} disabled={loading}>
-          {loading ? "Submitting..." : "Next"}
-        </SubmitButton>
+        <div className="flex justify-center mt-4">
+          <SubmitButton onClick={handleSubmit} disabled={loading}>
+            {loading ? "Submitting..." : "Next"}
+          </SubmitButton>
+        </div>
       </div>
     </div>
   );

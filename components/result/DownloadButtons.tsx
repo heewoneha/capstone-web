@@ -11,7 +11,7 @@ export default function DownloadButtons({
   onDownloadVideo,
 }: DownloadButtonsProps) {
   return (
-    <div className="flex flex-col sm:flex-row gap-4 items-center w-full">
+    <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
       <SubmitButton onClick={onDownloadImage} className="w-full sm:w-auto">
         Download image
       </SubmitButton>
