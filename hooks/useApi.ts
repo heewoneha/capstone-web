@@ -22,7 +22,7 @@ export function useApi<T = any>() {
 
   const request = useCallback(
     async (
-      method: HttpMethod,
+      method: HttpMethod | string,
       url: string,
       payload?: any,
       options?: UseApiOptions<T>
@@ -35,11 +35,19 @@ export function useApi<T = any>() {
           setData(null);
         }
 
+        const lowerMethod = method.toLowerCase() as HttpMethod;
+        const isFormData = typeof FormData !== 'undefined' && payload instanceof FormData;
+
         let response;
-        if (method === 'get') {
+
+        if (lowerMethod === 'get') {
           response = await api.get<ApiResponse<T>>(url, { params: payload });
         } else {
-          response = await api[method]<ApiResponse<T>>(url, payload);
+          response = await api[lowerMethod]<ApiResponse<T>>(url, payload, {
+            headers: isFormData
+              ? { 'Content-Type': 'multipart/form-data' }
+              : undefined,
+          });
         }
 
         const result = response.data;

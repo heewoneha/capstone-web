@@ -1,11 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useRouter } from "next/router";
-import axios from 'axios';
+import { Method } from "axios";
 import SubmitButton from '@/components/common/SubmitButton';
 import ToolSelector from '@/components/draw_character/ToolSelector';
 import ColorPalette from '@/components/draw_character/ColorPalette';
 import DrawingCanvas from '@/components/draw_character/DrawingCanvas';
 import DrawingTip from '@/components/draw_character/DrawingTip';
+import { useApi } from '@/hooks/useApi';
+
+export const METHODS = {
+  GET: 'GET' as Method,
+  POST: 'POST' as Method,
+  PUT: 'PUT' as Method,
+};
 
 export default function DrawPage() {
   const [brushColor, setBrushColor] = useState('#000000');
@@ -14,10 +21,10 @@ export default function DrawPage() {
   const [showPicker, setShowPicker] = useState(false);
   const [uuid, setUuid] = useState<string | null>(null);
   const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const canvasRef = useRef<{ exportImage: () => string }>(null);
+  const { request, loading } = useApi();
 
   useEffect(() => {
     const storedUuid = sessionStorage.getItem("uuid");
@@ -31,7 +38,6 @@ export default function DrawPage() {
   const handleSubmit = async () => {
     if (!uuid || !canvasRef.current) return;
 
-    setLoading(true);
     try {
       const base64DataUrl = canvasRef.current.exportImage();
       const blob = await (await fetch(base64DataUrl)).blob();
@@ -40,18 +46,14 @@ export default function DrawPage() {
       const formData = new FormData();
       formData.append("image_file", file);
 
-      await axios.post("/submit/character", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      await request(METHODS.POST, '/submit/character', formData);
+
+      await request(METHODS.POST, '/model');
 
       router.push("/result");
     } catch (err) {
       console.error(err);
       setError("Failed to upload character image.");
-    } finally {
-      setLoading(false);
     }
   };
 
