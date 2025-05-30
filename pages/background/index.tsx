@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react';
 import { useRouter } from "next/router";
+import { Method } from "axios";
 import { v4 as uuidv4 } from 'uuid';
 import OptionButton from '@/components/common/OptionButton';
+import { useApi } from "@/hooks/useApi";
+
+export const METHODS = {
+  GET: 'GET' as Method,
+  POST: 'POST' as Method,
+  PUT: 'PUT' as Method,
+};
 
 export default function SelectBackground() {
   const router = useRouter();
+  const {request, loading} = useApi();
 
   useEffect(() => {
     const existing = sessionStorage.getItem('uuid');
@@ -16,6 +25,32 @@ export default function SelectBackground() {
 
   const handleRoute = (path: string) => {
     router.push(path);
+  };
+  
+  const handleEmptyBackground = async () => {
+    const uuid = sessionStorage.getItem('uuid');
+    if (!uuid) {
+      console.warn("UUID is missing");
+      return;
+    }
+
+    const payload = {
+      text: null,
+      image_base64: null,
+    };
+
+    try {
+      await request(
+        METHODS.POST,
+        "/submit/background",
+        payload,
+      );
+
+      router.push('/draw_character');
+    } catch (err) {
+      console.error("Failed to submit empty background:", err);
+      alert("Failed to submit empty background. Please try again.");
+    }
   };
 
   return (
@@ -48,7 +83,8 @@ export default function SelectBackground() {
         <OptionButton
           title="EMPTY BACKGROUND"
           icon="⬜️"
-          onClick={() => handleRoute('/draw_character')}
+          onClick={handleEmptyBackground}
+          disabled={loading}
         />
       </div>
     </div>
