@@ -15,7 +15,7 @@ export default function GifPreview({ selectedGif, selectedTitle, selectedDanceNa
   const baseUrl = process.env.NEXT_PUBLIC_BLOB_BASE_URL;
 
   useEffect(() => {
-    if (!selectedTitle || !userUuid || !baseUrl) {
+    if (!selectedGif || !selectedTitle || !selectedDanceName|| !userUuid || !baseUrl) {
       setPreviewSrc(null);
       return;
     }
@@ -39,7 +39,7 @@ export default function GifPreview({ selectedGif, selectedTitle, selectedDanceNa
     };
 
     fetchImage();
-  }, [selectedTitle, userUuid, baseUrl]);
+  }, [selectedGif, selectedTitle, selectedDanceName, userUuid, baseUrl]);
 
   return (
     <div className="w-full aspect-video bg-gray-200 rounded mb-6 flex items-center justify-center">
