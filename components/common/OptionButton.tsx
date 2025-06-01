@@ -23,6 +23,6 @@ export default function OptionButton({
     >
       <p className="font-bold text-lg mb-4">{title}</p>
       <div className="text-6xl mb-4">{icon}</div>
-    </div>
+    </button>
   );
 }
