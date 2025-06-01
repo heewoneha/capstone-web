@@ -46,13 +46,14 @@ export default function GalleryPage() {
       return;
     }
 
-    const title = dummyGifs.find(gif => gif.full === selectedGif)?.title;
-    if (!title) return;
+    const danceName = dummyGifs.find(gif => gif.full === selectedGif)?.danceName;
+    if (!danceName) return;
 
-    const danceName = title.toLowerCase().replace(" ", "_");
+    const baseUrl = process.env.NEXT_PUBLIC_BLOB_BASE_URL;
+    const gifUrl = `${baseUrl}/${danceName}/${uuid}.gif`;
 
     try {
-      const response = await axios.get(`/result/${danceName}`, {
+      const response = await axios.get(gifUrl, {
         responseType: "arraybuffer",
       });
 
@@ -72,9 +73,39 @@ export default function GalleryPage() {
     }
   };
 
-  const handleDownloadVideo = () => {
-    alert("Video download not implemented yet.");
+  const handleDownloadVideo = async () => {
+    if (!selectedGif || !uuid) {
+      alert("Please select an animation first.");
+      return;
+    }
+
+    const danceName = dummyGifs.find(gif => gif.full === selectedGif)?.danceName;
+    if (!danceName) return;
+
+    const baseUrl = process.env.NEXT_PUBLIC_BLOB_BASE_URL;
+    const videoUrl = `${baseUrl}/${danceName}/${uuid}.mp4`;
+
+    try {
+      const response = await axios.get(videoUrl, {
+        responseType: "arraybuffer",
+      });
+
+      const blob = new Blob([response.data], { type: "video/mp4" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `${danceName}_${uuid}.mp4`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error("Download failed:", err);
+      alert("Failed to download video.");
+    }
   };
+
 
   return (
     <div className="min-h-screen bg-[#fdf7fd] p-4 md:p-8 flex flex-col items-center">
