@@ -4,10 +4,11 @@ import axios from 'axios';
 interface GifPreviewProps {
   selectedGif: string | null;
   selectedTitle: string | null;
+  selectedDanceName: string | null;
   userUuid: string | null;
 }
 
-export default function GifPreview({ selectedGif, selectedTitle, userUuid }: GifPreviewProps) {
+export default function GifPreview({ selectedGif, selectedTitle, selectedDanceName, userUuid }: GifPreviewProps) {
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
   const [error, setError] = useState("");
 
@@ -22,8 +23,7 @@ export default function GifPreview({ selectedGif, selectedTitle, userUuid }: Gif
     const fetchImage = async () => {
       try {
         setError("");
-        const danceName = selectedTitle.toLowerCase().replace(/ /g, "_");
-        const fullUrl = `${baseUrl}/${danceName}/${userUuid}.mp4`;
+        const fullUrl = `${baseUrl}/${selectedDanceName}/${userUuid}.mp4`;
 
         const response = await axios.get(fullUrl, {
           responseType: "arraybuffer",

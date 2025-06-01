@@ -13,10 +13,18 @@ export const METHODS = {
   PUT: 'PUT' as Method,
 };
 
-const dummyGifs = Array.from({ length: 10 }, (_, i) => ({
-  full: `/gifs/sample-${i + 1}.gif`,
-  title: `Dance ${i + 1}`
-}));
+const dummyGifs = [
+  {
+    full: '/gifs/hiplet_99.gif',
+    title: 'Hiplet 1999',
+    danceName: 'hiplet_99',
+  },
+  {
+    full: '/gifs/anxiety.gif',
+    title: 'Anxiety',
+    danceName: 'anxiety',
+  }
+];
 
 export default function GalleryPage() {
   const [selectedGif, setSelectedGif] = useState<string | null>(null);
@@ -79,6 +87,7 @@ export default function GalleryPage() {
           <GifPreview
             selectedGif={selectedGif}
             selectedTitle={dummyGifs.find(gif => gif.full === selectedGif)?.title || null}
+            selectedDanceName={dummyGifs.find(gif => gif.full === selectedGif)?.danceName || null}
             userUuid={uuid}
           />
           <DownloadButtons
