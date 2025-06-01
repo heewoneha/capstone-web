@@ -1,4 +1,10 @@
-import React, { useRef, useEffect, useState, forwardRef, useImperativeHandle } from 'react';
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  forwardRef,
+  useImperativeHandle
+} from 'react';
 import CanvasDraw from 'react-canvas-draw';
 
 interface DrawingCanvasProps {
@@ -28,18 +34,18 @@ export default forwardRef(function DrawingCanvas(
   }, []);
 
   useEffect(() => {
-    if (canvasRef.current) {
-      const ctx = canvasRef.current.canvas.drawing.getContext('2d');
-      if (ctx) {
-        ctx.fillStyle = "#ffffff";
-        ctx.fillRect(0, 0, canvasSize, canvasSize);
-      }
+    const canvas = canvasRef.current?.canvas.drawing;
+    const ctx = canvas?.getContext('2d');
+
+    if (ctx) {
+      ctx.globalCompositeOperation =
+        tool === 'eraser' ? 'destination-out' : 'source-over';
     }
-  }, [canvasSize]);
+  }, [tool]);
 
   useImperativeHandle(ref, () => ({
     exportImage: () => {
-      return canvasRef.current?.canvas.drawing.toDataURL("image/png");
+      return canvasRef.current?.canvas.drawing.toDataURL('image/png');
     }
   }));
 
@@ -50,7 +56,7 @@ export default forwardRef(function DrawingCanvas(
     >
       <CanvasDraw
         ref={canvasRef}
-        brushColor={tool === 'pen' ? brushColor : '#ffffff'}
+        brushColor={tool === 'pen' ? brushColor : 'rgba(0,0,0,1)'}
         brushRadius={tool === 'pen' ? brushRadius : 20}
         lazyRadius={0}
         hideGrid={true}
