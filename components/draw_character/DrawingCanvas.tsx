@@ -40,12 +40,13 @@ export default forwardRef(function DrawingCanvas(
     >
       <CanvasDraw
         ref={canvasRef}
-        brushColor={tool === 'pen' ? brushColor : 'rgba(0,0,0,0)'}
+        brushColor={tool === 'pen' ? brushColor : '#ffffff'}
         brushRadius={tool === 'pen' ? brushRadius : 20}
         lazyRadius={0}
         hideGrid={true}
         canvasWidth={canvasSize}
         canvasHeight={canvasSize}
+        canvasBackgroundColor="#ffffff"
         className="w-full h-full rounded"
       />
     </div>
