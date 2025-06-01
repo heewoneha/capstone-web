@@ -6,15 +6,18 @@ interface DownloadButtonsProps {
   onDownloadVideo: () => void;
 }
 
-export default function DownloadButtons({ onDownloadImage, onDownloadVideo }: DownloadButtonsProps) {
+export default function DownloadButtons({
+  onDownloadImage,
+  onDownloadVideo,
+}: DownloadButtonsProps) {
   return (
-    <div className="flex gap-4 items-center">
-      <SubmitButton onClick={onDownloadImage}>
+    <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full">
+      <SubmitButton onClick={onDownloadImage} className="w-full sm:w-auto">
         Download image
       </SubmitButton>
-      <SubmitButton onClick={onDownloadVideo}>
+      <SubmitButton onClick={onDownloadVideo} className="w-full sm:w-auto">
         Download video
       </SubmitButton>
     </div>
   );
-} 
+}
