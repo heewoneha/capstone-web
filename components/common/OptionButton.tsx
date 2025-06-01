@@ -13,6 +13,7 @@ export default function OptionButton({
   icon,
   onClick,
   className = "",
+  disabled = false,
 }: OptionButtonProps) {
   return (
     <button
