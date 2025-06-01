@@ -4,14 +4,17 @@ import axios from 'axios';
 interface GifPreviewProps {
   selectedGif: string | null;
   selectedTitle: string | null;
+  userUuid: string | null;
 }
 
-export default function GifPreview({ selectedGif, selectedTitle }: GifPreviewProps) {
+export default function GifPreview({ selectedGif, selectedTitle, userUuid }: GifPreviewProps) {
   const [previewSrc, setPreviewSrc] = useState<string | null>(null);
   const [error, setError] = useState("");
 
+  const baseUrl = process.env.NEXT_PUBLIC_BLOB_BASE_URL;
+
   useEffect(() => {
-    if (!selectedTitle) {
+    if (!selectedTitle || !userUuid || !baseUrl) {
       setPreviewSrc(null);
       return;
     }
@@ -19,12 +22,14 @@ export default function GifPreview({ selectedGif, selectedTitle }: GifPreviewPro
     const fetchImage = async () => {
       try {
         setError("");
-        const danceName = selectedTitle.toLowerCase().replace(" ", "_");
-        const response = await axios.get(`/result/${danceName}`, {
+        const danceName = selectedTitle.toLowerCase().replace(/ /g, "_");
+        const fullUrl = `${baseUrl}/${danceName}/${userUuid}.mp4`;
+
+        const response = await axios.get(fullUrl, {
           responseType: "arraybuffer",
         });
 
-        const blob = new Blob([response.data], { type: "image/gif" });
+        const blob = new Blob([response.data], { type: "video/mp4" });
         const imageUrl = URL.createObjectURL(blob);
         setPreviewSrc(imageUrl);
       } catch (err: any) {
@@ -34,14 +39,16 @@ export default function GifPreview({ selectedGif, selectedTitle }: GifPreviewPro
     };
 
     fetchImage();
-  }, [selectedTitle]);
+  }, [selectedTitle, userUuid, baseUrl]);
 
   return (
     <div className="w-full aspect-video bg-gray-200 rounded mb-6 flex items-center justify-center">
       {previewSrc ? (
-        <img
+        <video
           src={previewSrc}
-          alt="Dance Result"
+          controls
+          autoPlay
+          loop
           className="max-w-full max-h-full object-contain rounded"
         />
       ) : error ? (

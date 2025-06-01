@@ -79,6 +79,7 @@ export default function GalleryPage() {
           <GifPreview
             selectedGif={selectedGif}
             selectedTitle={dummyGifs.find(gif => gif.full === selectedGif)?.title || null}
+            userUuid={uuid}
           />
           <DownloadButtons
             onDownloadImage={handleDownloadImage}
