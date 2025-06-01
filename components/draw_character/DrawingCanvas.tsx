@@ -27,6 +27,16 @@ export default forwardRef(function DrawingCanvas(
     return () => window.removeEventListener('resize', resize);
   }, []);
 
+  useEffect(() => {
+    if (canvasRef.current) {
+      const ctx = canvasRef.current.canvas.drawing.getContext('2d');
+      if (ctx) {
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(0, 0, canvasSize, canvasSize);
+      }
+    }
+  }, [canvasSize]);
+
   useImperativeHandle(ref, () => ({
     exportImage: () => {
       return canvasRef.current?.canvas.drawing.toDataURL("image/png");
