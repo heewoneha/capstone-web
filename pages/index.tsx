@@ -36,10 +36,10 @@ export default function Home() {
             </div>
             <div>
               <p className="font-semibold">
-                Use uploaded character / create character live on drawing board
+                Draw your character
               </p>
               <p className="text-sm text-gray-600">
-                Choose a dancing character.
+                Draw a human-shaped character in Paint using a variety of colors.
               </p>
             </div>
           </div>
