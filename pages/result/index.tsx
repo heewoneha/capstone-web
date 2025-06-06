@@ -23,6 +23,21 @@ const dummyGifs = [
     full: '/gifs/anxiety.gif',
     title: 'Anxiety',
     danceName: 'anxiety',
+  },
+  {
+    full: '/gifs/tiramisu_cake.gif',
+    title: 'Tiramisu Cake',
+    danceName: 'tiramisu_cake',
+  },
+  {
+    full: '/gifs/bumblebee.gif',
+    title: 'Bumblebee',
+    danceName: 'bumblebee',
+  },
+  {
+    full: '/gifs/groove.gif',
+    title: 'Let\'s Groove',
+    danceName: 'groove',
   }
 ];
 
