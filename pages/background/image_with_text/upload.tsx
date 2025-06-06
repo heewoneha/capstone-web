@@ -90,7 +90,9 @@ export default function ImageWithTextUpload() {
           error={error}
         />
 
-        <SubmitButton onClick={handleSubmit} />
+        <SubmitButton onClick={handleSubmit} disabled={loading}>
+          {loading ? "Submitting..." : "Next"}
+        </SubmitButton>
       </div>
     </div>
   );
